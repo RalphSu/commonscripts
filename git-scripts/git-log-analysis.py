@@ -28,8 +28,9 @@ class GitCommitAnalyzer :
 		today = datetime.date.today()
 		delta = datetime.timedelta(days=analyzeDay)
 		start = today - delta
-		os.system("git log --since='{0}' --pretty=\"%h -- %an -- %ae\" --shortstat --no-merges > git.log".format(start.isoformat()))
-		#print "git log --since='%s' --pretty=short > git.log" % start.isoformat()
+		gitCommand="git log --since='{0}' --pretty=\"%h -- %an -- %ae\" --shortstat --no-merges > git.log".format(start.isoformat())
+		os.system(gitCommand)
+		print gitCommand
 
 		logfile = open('git.log')
 		i = 0
@@ -52,6 +53,8 @@ class GitCommitAnalyzer :
 			elif i == 2:
 				#print line
 				result = self.pattern.match(line)
+				if result == None :
+					continue
 				logEntry.fileChanged = int(result.group(1))
 				logEntry.lineInserted = int(result.group(2))
 				logEntry.lineDeleted = int(result.group(3))
