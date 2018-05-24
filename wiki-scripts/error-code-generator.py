@@ -13,10 +13,10 @@ import StringIO
 import re
 
 SPACEKEY = "CLOUD"
-CONFLUENCE_URL = 'https://wiki.vip.corp.ebay.com/rpc/xmlrpc'
+CONFLUENCE_URL = #the conflunce url
 CONFLUENCE_LOGIN = "_cms_ss_client"
-CONFLUENCE_PASSWORD = "1nt3Gr1tY"
-CODE_SOURCE = "https://github.scm.corp.ebay.com/cloud-cms/cms.open"
+CONFLUENCE_PASSWORD = "xxxxx"
+CODE_SOURCE = "your code source on github"
 SERVER = None
 TOKEN = None
 
@@ -59,7 +59,7 @@ def _dualwrite_error(errors) :
 
 def _entmgr_errors(errors):
     global httpClient
-    entmgr_url = "https://github.scm.corp.ebay.com/cloud-cms/cms.open/raw/cms_release_w52/cms-core/entmgr/src/main/java/com/ebay/cloud/cms/entmgr/exception/CmsEntMgrException.java"
+    entmgr_url = "CmsEntMgrException.java"
     enum_name = "EntMgrErrCodeEnum"
     resp, content = httpClient.request(entmgr_url, "GET")
     _get_error(errors, content, enum_name, "cms-entmgr")
@@ -118,7 +118,7 @@ def _get_error(errors, content, enum_name, module):
 
 def _dal_errors(errors):
     global httpClient
-    dal_url = "https://github.scm.corp.ebay.com/cloud-cms/cms.open/raw/cms_release_w52/cms-core/dal/src/main/java/com/ebay/cloud/cms/dal/exception/CmsDalException.java"
+    dal_url = "CmsDalException.java"
     enum_name= "DalErrCodeEnum"
     resp, content = httpClient.request(dal_url, "GET")
     _get_error(errors, content, enum_name, "cms-dal")
@@ -126,7 +126,7 @@ def _dal_errors(errors):
 
 def _query_errors(errors):
     global httpClient
-    query_url = "https://github.scm.corp.ebay.com/cloud-cms/cms.open/raw/cms_release_w52/cms-core/query/src/main/java/com/ebay/cloud/cms/query/exception/QueryException.java"
+    query_url = "QueryException.java"
     enum_name = "QueryErrCodeEnum"
     resp, content = httpClient.request(query_url, "GET")
     _get_error(errors, content, enum_name, "cms-query")
@@ -139,7 +139,7 @@ def genereatePageContent(errors):
     <body>
     <H1>Description</H1>
     <p> Please note: This page is automcatically generated from <a href=%s>CMS code source</a>. 
-    <p> This wiki page to address CMS rest API error code. CMS rest api result will have two error code, one is http code, which mostly conform to the <a href="https://wiki.vip.corp.ebay.com/display/CLOUD/RESTful+design+standard">RESTful design standard</a>. Besides, CMS also defines a CMS own error code, based on the error code, the client would understand which happens when some service doesn't work.
+    <p> This wiki page to address CMS rest API error code. CMS rest api result will have two error code, one is http code, which mostly conform to the <a href="https://host/display/CLOUD/RESTful+design+standard">RESTful design standard</a>. Besides, CMS also defines a CMS own error code, based on the error code, the client would understand which happens when some service doesn't work.
     </body>
     <H1>CMS Rest API Error Code List</H1>
     <TABLE border=1>
@@ -187,7 +187,7 @@ def writePage(content):
 
     page['space'] = SPACEKEY
     page['title'] = pagename
-    page['parentId'] = "173823877" ## this is the page id for https://wiki.vip.corp.ebay.com/display/CLOUD/CMS+Rest+API+Error+Code+Category
+    page['parentId'] = "173823877" ## this is the page id for https://host/display/CLOUD/CMS+Rest+API+Error+Code+Category
     page['content'] = content
     SERVER.confluence2.storePage(TOKEN, page)
 
