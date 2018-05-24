@@ -35,5 +35,5 @@ def printPRWarning(g, repo="sherlock/Sherlock2", CREATE_WARNING=15, UPDATE_WARNI
     print(long_create)
 
 if __name__ == "__main__" :
-    g = Github(base_url="https://github.corp.ebay.com/api/v3", login_or_token="f5c5764444a2d3f7e283e2368c780fc126a4d785")
+    g = Github(base_url="https://github.com/api/v3", login_or_token="f5c5764444a2d3f7e283e2368c780fc126a4d785")
     printPRWarning(g)
